@@ -15,7 +15,7 @@ public class HowlersMotor extends Motor {
         m_motor = hMap.get(DcMotorEx.class, name);
         TICKS_PER_REV = TPR;
     }
-
+//
     public void set(double speed) {
         m_motor.setPower(speed);
     }

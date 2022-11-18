@@ -64,7 +64,7 @@ public class CoolMotor extends Motor {
         m_motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         m_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-
+//
     public double getNumRevolutions() {
         return getEncoderCount() / TICKS_PER_REV;
     }

@@ -51,7 +51,7 @@ public class HowlersMotor extends Motor {
     public void setDCZeroPowerBehavior(DcMotor.ZeroPowerBehavior behavior) {
         m_motor.setZeroPowerBehavior(behavior);
     }
-
+//
     public int getEncoderCount() {
         return (int) (m_motor.getCurrentPosition() - resetVal);
     }

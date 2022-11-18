@@ -56,7 +56,7 @@ public class LiftArm extends SubsystemBase {
     public void liftController() {
         if(!PIDControl) return;
        Robot robot = Robot.getInstance();
-
+//
         switch(liftHeight) {
             case ZERO:
                 liftPID.setTargetPosition(0);

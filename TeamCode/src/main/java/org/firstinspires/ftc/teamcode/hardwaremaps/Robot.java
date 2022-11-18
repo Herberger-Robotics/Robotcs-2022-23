@@ -20,6 +20,7 @@ public class Robot {
 
         // Static variable reference of single_instance
         // of type Singleton
+    //
         private static Robot single_instance = null;
 
         HardwareMap hwMap = null;

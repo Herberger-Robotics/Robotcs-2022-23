@@ -19,7 +19,7 @@ public class Lift extends CommandBase {
     public void initialize() {
         liftArm.setHeight(height);
     }
-
+//
     @Override
     public boolean isFinished() {
         Robot robot = Robot.getInstance();

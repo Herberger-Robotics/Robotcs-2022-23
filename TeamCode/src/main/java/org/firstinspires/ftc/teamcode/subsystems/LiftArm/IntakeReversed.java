@@ -21,7 +21,7 @@ public class IntakeReversed extends CommandBase {
         liftArm.intakeReversed();
         timer.reset();
     }
-
+//
     @Override
     public boolean isFinished() {
         return timer.time(TimeUnit.MILLISECONDS) >= 500;
