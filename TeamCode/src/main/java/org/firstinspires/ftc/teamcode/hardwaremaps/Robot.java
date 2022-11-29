@@ -40,6 +40,7 @@ public class Robot {
         public CRServo intake = null;
 
         //public Camera camera = null;
+        public CRServo claw = null;
 
         public LiftArm liftArm = null;
         public DriveTrain driveTrain = null;
