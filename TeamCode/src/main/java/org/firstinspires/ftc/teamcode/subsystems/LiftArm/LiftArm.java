@@ -3,8 +3,11 @@ package org.firstinspires.ftc.teamcode.subsystems.LiftArm;
 import com.acmerobotics.roadrunner.control.PIDCoefficients;
 import com.acmerobotics.roadrunner.control.PIDFController;
 import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.hardwaremaps.Robot;
 import org.firstinspires.ftc.teamcode.hardwaremaps.HardwareWrappers.CoolMotor;
@@ -38,7 +41,7 @@ public class LiftArm extends SubsystemBase {
         robot.lift.setInverted(true);
         liftPID = new PIDFController(new PIDCoefficients(0.0015, 0, 0));
 
-        robot.intake = new CRServo(hwMap,"box");
+        robot.intake = new SimpleServo(hwMap,"intake",0,360);
 
         currentError = 0;
     }
@@ -89,15 +92,13 @@ public class LiftArm extends SubsystemBase {
         liftController();
     }
 
-    public void intake() {
-        Robot.getInstance().intake.set(1);
+    public void openIntake() {
+        Robot.getInstance().intake.setPosition(1);
     }
 
-    public void intakeReversed() {
-        Robot.getInstance().intake.set(-1);
+    public void closeIntake() {
+        Robot.getInstance().intake.setPosition(180);
     }
-
-    public void stopIntake() { Robot.getInstance().intake.set(0);}
 
     public void resetEncoder() {
         Robot.getInstance().lift.resetEncoder();

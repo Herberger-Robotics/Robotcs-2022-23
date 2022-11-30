@@ -33,15 +33,20 @@
  import com.acmerobotics.dashboard.FtcDashboard;
  import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
  import com.arcrobotics.ftclib.command.CommandScheduler;
+ import com.arcrobotics.ftclib.command.InstantCommand;
  import com.arcrobotics.ftclib.gamepad.GamepadEx;
  import com.arcrobotics.ftclib.gamepad.GamepadKeys;
  import com.qualcomm.robotcore.eventloop.opmode.OpMode;
  import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+ import com.qualcomm.robotcore.hardware.DcMotor;
  import com.qualcomm.robotcore.util.ElapsedTime;
 
  import org.firstinspires.ftc.teamcode.hardwaremaps.Robot;
  import org.firstinspires.ftc.teamcode.subsystems.DriveTrain.DefaultDrive;
  import org.firstinspires.ftc.teamcode.subsystems.DriveTrain.DriveTrain;
+ import org.firstinspires.ftc.teamcode.subsystems.LiftArm.Lift;
+ import org.firstinspires.ftc.teamcode.subsystems.LiftArm.LiftHeight;
+ import org.firstinspires.ftc.teamcode.subsystems.LiftArm.LiftingArm;
 
  @TeleOp(name="Dumb Drive", group="Iterative Opmode")
  public class DumbDrive extends OpMode
@@ -71,17 +76,18 @@
      public void init_loop() {
          robot.clearBulkCache();
          if(driverOp.getButton(GamepadKeys.Button.LEFT_BUMPER)) {
-             //robot.lift.resetEncoder();
-             //telemetry.addData("LIFT","RESET");
+             robot.lift.resetEncoder();
+             telemetry.addData("LIFT","RESET");
              }
      }
 
      @Override
      public void start() {
          runtime.reset();
-         //robot.liftArm.setHeight(LiftHeight.DRIVE);
+         robot.liftArm.setHeight(LiftHeight.DRIVE);
 
-         new DefaultDrive(robot.driveTrain,() -> driverOp.getLeftX(),() -> driverOp.getLeftY(), () -> driverOp.getRightX()).schedule();
+         new DefaultDrive(robot.driveTrain,() -> driverOp.getLeftY(),() -> driverOp.getLeftX(), () -> driverOp.getRightX()).schedule();
+
      }
 
      @Override
@@ -90,31 +96,18 @@
          CommandScheduler scheduler = CommandScheduler.getInstance();
          TelemetryPacket packet = new TelemetryPacket();
 
-      /*   driverOp.getGamepadButton(GamepadKeys.Button.A)
-                 .whenPressed(new InstantCommand(robot.liftArm::intake))
-                 .whenReleased(new InstantCommand(robot.liftArm::stopIntake));
-         driverOp.getGamepadButton(GamepadKeys.Button.X)
-                 .whenPressed(new SequentialCommandGroup(
-                         new InstantCommand(robot.liftArm::intake),
-                         new Lift(robot.liftArm, LiftHeight.ZERO)
-                 ))
-                 .whenReleased(new SequentialCommandGroup(
-                         new InstantCommand(robot.liftArm::stopIntake),
-                         new Lift(robot.liftArm, LiftHeight.DRIVE)
-                 ));
-         driverOp.getGamepadButton(GamepadKeys.Button.B)
-                 .whenPressed(new SequentialCommandGroup(
-                         new InstantCommand(robot.liftArm::intake),
-                         new Lift(robot.liftArm, LiftHeight.ZERO)
-                 ))
-                 .whenReleased(new SequentialCommandGroup(
-                         new Lift(robot.liftArm, LiftHeight.DRIVE)
-                 ));
-*/
+
+        driverOp.getGamepadButton(GamepadKeys.Button.A).whenPressed(robot.liftArm::openIntake);
+        driverOp.getGamepadButton(GamepadKeys.Button.B).whenPressed(robot.liftArm::closeIntake);
+
+
+
+
+
          if(driverOp.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.2) robot.driveTrain.slow();
          else robot.driveTrain.fast();
 
-        /* toolOp.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(
+        toolOp.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(
                  new Lift(robot.liftArm, LiftHeight.DRIVE));
          toolOp.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(
                  new Lift(robot.liftArm, LiftHeight.BOTTOM));
@@ -122,9 +115,6 @@
                  new Lift(robot.liftArm, LiftHeight.MIDDLE));
          toolOp.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(
                  new Lift(robot.liftArm, LiftHeight.TOP));
-         toolOp.getGamepadButton(GamepadKeys.Button.X)
-                 .whenPressed(new Lift(robot.liftArm, LiftHeight.CAP));
-*/
 /*
          toolOp.getGamepadButton(GamepadKeys.Button.A)
                  .whenPressed(new InstantCommand(robot.liftArm::intakeReversed))
@@ -142,9 +132,9 @@
           */
 
          scheduler.run();
-         //packet.put("liftPID Error",robot.liftArm.currentError);
-         //packet.put("liftPID Target", robot.liftArm.getPIDTarget());
-         //packet.put("lift Position", robot.lift.getEncoderCount());
+         packet.put("liftPID Error",robot.liftArm.currentError);
+         packet.put("liftPID Target", robot.liftArm.getPIDTarget());
+         packet.put("lift Position", robot.lift.getEncoderCount());
          packet.put("0", 0);
          packet.put("5000", 0);
          FtcDashboard.getInstance().sendTelemetryPacket(packet);
@@ -161,7 +151,7 @@
          CommandScheduler.getInstance().cancelAll();
          robot.driveTrain.stop();
          //robot.duckMotor.stopMotor();
-         //srobot.lift.stopMotor();
+         robot.lift.stopMotor();
 
      }
 

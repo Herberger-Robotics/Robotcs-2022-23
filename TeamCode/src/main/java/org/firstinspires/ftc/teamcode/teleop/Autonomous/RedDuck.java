@@ -100,9 +100,9 @@ public class RedDuck extends LinearOpMode {
                 new AutoDrive(robot.driveTrain,duckDistance)
                         .withTimeout(3000),
 
-                new InstantCommand(robot.liftArm::intakeReversed),
+                new InstantCommand(robot.liftArm::openIntake),
                 new WaitCommand(1000),
-                new InstantCommand(robot.liftArm::stopIntake),
+                new InstantCommand(robot.liftArm::closeIntake),
 
                 new AutoDrive(robot.driveTrain,-1000 - duckDistance)
                         .withTimeout(5000)

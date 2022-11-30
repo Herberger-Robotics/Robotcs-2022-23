@@ -89,9 +89,9 @@ public class RedWarehouse extends LinearOpMode {
                 new GoToHeading(robot.driveTrain,-45),
                 new AutoDrive(robot.driveTrain,duckDistance)
                         .withTimeout(5000),
-                new InstantCommand(robot.liftArm::intakeReversed),
+                new InstantCommand(robot.liftArm::openIntake),
                 new WaitCommand(1000),
-                new InstantCommand(robot.liftArm::stopIntake),
+                new InstantCommand(robot.liftArm::closeIntake),
                 new AutoDrive(robot.driveTrain,-duckDistance - 100)
                         .withTimeout(5000),
                 new GoToHeading(robot.driveTrain,-90)

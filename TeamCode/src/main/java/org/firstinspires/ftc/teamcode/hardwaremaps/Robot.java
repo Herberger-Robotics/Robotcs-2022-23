@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode.hardwaremaps;
 
 import com.arcrobotics.ftclib.command.CommandScheduler;
+import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
@@ -37,10 +39,9 @@ public class Robot {
         public Motor duckMotor = null;
 
         public CoolMotor lift = null;
-        public CRServo intake = null;
+        public ServoEx intake = null;
 
         //public Camera camera = null;
-        public CRServo claw = null;
 
         public LiftArm liftArm = null;
         public DriveTrain driveTrain = null;
@@ -112,6 +113,7 @@ public class Robot {
             CommandScheduler.getInstance().reset();
             hwMap = ahwMap;
             driveTrain = new DriveTrain(hwMap, driveMode);
+            liftArm = new LiftArm(hwMap);
 
             List<LynxModule> allHubs = hwMap.getAll(LynxModule.class);
 
