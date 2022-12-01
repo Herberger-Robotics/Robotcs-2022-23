@@ -177,9 +177,9 @@ public class DriveTrain extends SubsystemBase {
 
     }
 
-    public void slow() { driveTrain.setMaxSpeed(0.3); }
+    public void slow() { driveTrain.setMaxSpeed(0.25); }
     public void fast() {
-        driveTrain.setMaxSpeed(0.6);
+        driveTrain.setMaxSpeed(0.75);
     }
 
 

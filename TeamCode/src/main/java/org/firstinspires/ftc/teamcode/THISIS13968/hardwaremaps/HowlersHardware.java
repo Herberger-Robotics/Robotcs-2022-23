@@ -1,12 +1,11 @@
-package org.firstinspires.ftc.teamcode.EXAMPLES.hardwaremaps;
+package org.firstinspires.ftc.teamcode.THISIS13968.hardwaremaps;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.EXAMPLES.hardwaremaps.motors.HowlersMotor;
-import org.firstinspires.ftc.teamcode.EXAMPLES.subsystems.DriveTrain;
+import org.firstinspires.ftc.teamcode.THISIS13968.hardwaremaps.motors.HowlersMotor;
+import org.firstinspires.ftc.teamcode.THISIS13968.subsystems.DriveTrain;
 
 public class HowlersHardware {
     // static variable single_instance of type Singleton

@@ -84,7 +84,7 @@
      @Override
      public void start() {
          runtime.reset();
-         robot.liftArm.setHeight(LiftHeight.DRIVE);
+         robot.liftArm.setHeight(LiftHeight.ZERO);
 
          new DefaultDrive(robot.driveTrain,() -> driverOp.getLeftY(),() -> driverOp.getLeftX(), () -> driverOp.getRightX()).schedule();
 
@@ -107,13 +107,19 @@
          if(driverOp.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.2) robot.driveTrain.slow();
          else robot.driveTrain.fast();
 
-        toolOp.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(
+         driverOp.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(
                  new Lift(robot.liftArm, LiftHeight.DRIVE));
-         toolOp.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(
+
+
+         driverOp.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(
                  new Lift(robot.liftArm, LiftHeight.BOTTOM));
-         toolOp.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(
+
+
+         driverOp.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(
                  new Lift(robot.liftArm, LiftHeight.MIDDLE));
-         toolOp.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(
+
+
+         driverOp.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(
                  new Lift(robot.liftArm, LiftHeight.TOP));
 /*
          toolOp.getGamepadButton(GamepadKeys.Button.A)

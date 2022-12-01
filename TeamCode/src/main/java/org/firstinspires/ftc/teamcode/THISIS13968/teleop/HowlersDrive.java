@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode.EXAMPLES.teleop;
+package org.firstinspires.ftc.teamcode.THISIS13968.teleop;
 
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
@@ -36,7 +36,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.EXAMPLES.hardwaremaps.HowlersHardware;
+import org.firstinspires.ftc.teamcode.THISIS13968.hardwaremaps.HowlersHardware;
 @Disabled
 @TeleOp(name="HowlersDrive", group="Iterative Opmode")
 

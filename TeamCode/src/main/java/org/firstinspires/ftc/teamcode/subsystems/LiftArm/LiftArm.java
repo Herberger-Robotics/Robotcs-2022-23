@@ -64,22 +64,22 @@ public class LiftArm extends SubsystemBase {
             case ZERO:
                 liftPID.setTargetPosition(0);
             case PICKUP:
-                liftPID.setTargetPosition(100);
+                liftPID.setTargetPosition(0);
                 break;
             case DRIVE:
-                liftPID.setTargetPosition(1300);
+                liftPID.setTargetPosition(0);
                 break;
             case BOTTOM:
-                liftPID.setTargetPosition(3000);
+                liftPID.setTargetPosition(0);
                 break;
             case MIDDLE:
-                liftPID.setTargetPosition(6500);
+                liftPID.setTargetPosition(50);
                 break;
             case TOP:
-                liftPID.setTargetPosition(8500);
+                liftPID.setTargetPosition(100);
                 break;
             case CAP:
-                liftPID.setTargetPosition(10500);
+                //liftPID.setTargetPosition(100);
                 break;
         }
         calculation = liftPID.update(robot.lift.getEncoderCount());
