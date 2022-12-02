@@ -108,7 +108,7 @@
          else robot.driveTrain.fast();
 
          driverOp.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(
-                 new Lift(robot.liftArm, LiftHeight.DRIVE));
+                 new Lift(robot.liftArm, LiftHeight.ZERO));
 
 
          driverOp.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(
@@ -121,6 +121,8 @@
 
          driverOp.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(
                  new Lift(robot.liftArm, LiftHeight.TOP));
+
+
 /*
          toolOp.getGamepadButton(GamepadKeys.Button.A)
                  .whenPressed(new InstantCommand(robot.liftArm::intakeReversed))
